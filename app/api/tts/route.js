@@ -35,8 +35,12 @@ export async function POST(req) {
       body: JSON.stringify(payload)
     })
 
+    console.log('TTS API response status:', response.status)
+
     if (!response.ok) {
-      throw new Error(`TTS failed: ${response.status}`)
+      const errorText = await response.text()
+      console.log('TTS API error:', errorText)
+      throw new Error(`TTS failed: ${response.status} - ${errorText}`)
     }
 
     const result = await response.json()
@@ -47,7 +51,8 @@ export async function POST(req) {
     if (audioData && mimeType && mimeType.startsWith("audio/")) {
       return NextResponse.json({ audioData, mimeType })
     } else {
-      throw new Error('Invalid TTS response')
+      console.error('Invalid TTS response. No audio data found. Response:', result)
+      throw new Error('Invalid TTS response - no audio data')
     }
   } catch (error) {
     console.error('TTS error:', error)

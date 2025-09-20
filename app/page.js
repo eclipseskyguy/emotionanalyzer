@@ -201,7 +201,7 @@ export default function EmotionAnalyzer() {
       })
 
       if (!ttsResponse.ok) {
-        throw new Error(`TTS failed: ${ttsResponse.status}`)
+        throw new Error(`TTS failed with status: ${ttsResponse.status}`)
       }
 
       const result = await ttsResponse.json()
@@ -213,12 +213,18 @@ export default function EmotionAnalyzer() {
         const pcm16 = new Int16Array(pcmData)
         const wavBlob = pcmToWav(pcm16, sampleRate)
         const audioUrl = URL.createObjectURL(wavBlob)
+        
         setAudioUrl(audioUrl)
+      } else {
+        console.error('Invalid TTS response. The response may not contain audio data. Response:', result)
+        updateResultState('Sorry, audio for this language is not supported.', '⚠️', '#ef4444')
       }
     } catch (error) {
-      console.error('TTS error:', error)
+      console.error('Error generating translated audio:', error)
+      updateResultState('Sorry, an error occurred with the audio service.', '⚠️', '#ef4444')
     }
   }
+
 
   return (
     <div 
@@ -251,8 +257,14 @@ export default function EmotionAnalyzer() {
             <option value="ja-JP">Japanese (Japan)</option>
             <option value="ko-KR">Korean (Korea)</option>
             <option value="hi-IN">Hindi (India)</option>
+            <option value="ta-IN">Tamil (India)</option>
+            <option value="bn-BD">Bengali (Bangladesh)</option>
+            <option value="ar-EG">Arabic (Egypt)</option>
+            <option value="mr-IN">Marathi (India)</option>
+            <option value="te-IN">Telugu (India)</option>
           </select>
         </div>
+
 
         {/* Record Button */}
         <div className="mb-6 w-full">
