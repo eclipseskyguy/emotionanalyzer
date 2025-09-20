@@ -25,7 +25,7 @@ export default function EmotionAnalyzer() {
     { value: 'ko-KR', label: 'Korean (Korea)', flag: '🇰🇷' },
     { value: 'hi-IN', label: 'Hindi (India)', flag: '🇮🇳' },
     { value: 'ta-IN', label: 'Tamil (India)', flag: '🇮🇳' },
-    { value: 'bn-BD', label: 'Bengali (Bangladesh)', flag: '🇧🇩' },
+    { value: 'bn-BD', label: 'Bengali (India)', flag: '🇮🇳' },
     { value: 'ar-EG', label: 'Arabic (Egypt)', flag: '🇪🇬' },
     { value: 'mr-IN', label: 'Marathi (India)', flag: '🇮🇳' },
     { value: 'te-IN', label: 'Telugu (India)', flag: '🇮🇳' }
