@@ -882,8 +882,8 @@ export default function EmotionAnalyzer() {
             <div>
               <h4 className="text-white font-semibold mb-3">Team</h4>
               <div className="space-y-2 text-white/70 text-sm">
-                <div>Lead Developer: [Kartik Patel]</div>
-                <div>AI Specialist: [Samruddhi Amol Shah]</div>
+                <div>[Kartik Patel]</div>
+                <div>[Samruddhi Amol Shah]</div>
               </div>
             </div>
             <div>
